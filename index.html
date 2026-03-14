@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laser3D Studio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0a; color: #f0f0f0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+    header { position: sticky; top: 0; z-index: 100; background: #0a0a0aee; backdrop-filter: blur(10px); border-bottom: 1px solid #1f1f1f; padding: 18px 60px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    header h1 { font-size: 2rem; letter-spacing: 0.2em; color: #39ff14; text-transform: uppercase; }
+    nav { display: flex; gap: 36px; }
+    nav a { color: #888; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
+    nav a:hover { color: #39ff14; }
+    .hero { height: 92vh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 22px; text-align: center; padding: 40px; background: radial-gradient(ellipse at center, #0d200d 0%, #0a0a0a 65%); }
+    .hero h2 { font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; }
+    .hero h2 span { color: #39ff14; }
+    .hero p { font-size: 1.1rem; color: #888; max-width: 520px; line-height: 1.6; }
+    .btn { display: inline-block; padding: 14px 38px; background: #39ff14; color: #0a0a0a; font-weight: 700; text-decoration: none; border-radius: 4px; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+    .btn:hover { background: #2dcc0f; transform: translateY(-2px); }
+    .product-section { display: flex; align-items: center; min-height: 100vh; padding: 80px; gap: 80px; border-top: 1px solid #181818; }
+    .product-section.reverse { flex-direction: row-reverse; background: #0d0d0d; }
+    .product-img-wrap { flex: 1; display: flex; justify-content: center; overflow: hidden; border-radius: 16px; }
+    .product-img-wrap img { width: 100%; max-width: 520px; border-radius: 14px; object-fit: cover; aspect-ratio: 4/3; transform: scale(0.86); transition: transform 0.08s linear; box-shadow: 0 0 80px rgba(57,255,20,0.06); }
+    .product-info { flex: 1; display: flex; flex-direction: column; gap: 22px; }
+    .product-tag { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: #39ff14; }
+    .product-info h3 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; line-height: 1.2; }
+    .product-info p { font-size: 1rem; color: #999; line-height: 1.75; max-width: 440px; }
+    .product-price { font-size: 1.9rem; font-weight: 800; color: #39ff14; }
+    .product-price small { font-size: 0.85rem; color: #555; font-weight: 400; margin-left: 6px; }
+    .about { padding: 110px 80px; text-align: center; border-top: 1px solid #181818; background: #0d0d0d; }
+    .about h2 { font-size: 2rem; margin-bottom: 20px; color: #39ff14; letter-spacing: 0.1em; }
+    .about p { max-width: 660px; margin: 0 auto; color: #999; line-height: 1.85; font-size: 1.05rem; }
+    .contact { padding: 110px 80px; text-align: center; border-top: 1px solid #181818; }
+    .contact h2 { font-size: 2rem; margin-bottom: 10px; }
+    .contact > p { color: #888; margin-bottom: 44px; }
+    .contact form { display: flex; flex-direction: column; gap: 16px; max-width: 500px; margin: 0 auto; }
+    .contact form input, .contact form textarea { background: #111; border: 1px solid #222; color: #f0f0f0; padding: 14px 18px; border-radius: 6px; font-size: 1rem; outline: none; font-family: inherit; transition: border-color 0.2s; }
+    .contact form input:focus, .contact form textarea:focus { border-color: #39ff14; }
+    .contact form textarea { height: 150px; resize: vertical; }
+    footer { padding: 28px 60px; border-top: 1px solid #181818; text-align: center; color: #333; font-size: 0.8rem; letter-spacing: 0.1em; }
+    @media (max-width: 800px) { .product-section, .product-section.reverse { flex-direction: column; padding: 60px 24px; gap: 40px; } header { padding: 16px 20px; } nav { flex-wrap: wrap; justify-content: center; gap: 14px; } .about, .contact { padding: 60px 24px; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Laser3D Studio</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#prodotti3d">Prodotti 3D</a>
+    <a href="#incisioni">Incisioni Laser</a>
+    <a href="#chi-siamo">Chi siamo</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h2>Oggetti unici <span>fatti da zero</span><br>con stampa 3D<br>e incisione laser</h2>
+  <p>Ogni pezzo viene progettato e realizzato nel nostro laboratorio, su misura per te. Niente serie, niente compromessi.</p>
+  <a href="#prodotti3d" class="btn">Scopri i prodotti</a>
+</section>
+
+<section id="prodotti3d">
+
+  <div class="product-section">
+    <div class="product-img-wrap">
+      <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=700&q=80" alt="Supporto cuffie gaming 3D" />
+    </div>
+    <div class="product-info">
+      <span class="product-tag">Stampa 3D</span>
+      <h3>Supporto cuffie gaming personalizzato</h3>
+      <p>Stampato in 3D con design minimal, disponibile in vari colori e materiali. Puoi aggiungere il tuo nickname o logo inciso sulla base per un setup davvero unico.</p>
+      <div class="product-price">29,90 &euro; <small>a partire da</small></div>
+      <a href="#contatti" class="btn">Acquista ora</a>
+    </div>
+  </div>
+
+  <div class="product-section reverse">
+    <div class="product-img-wrap">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Portachiavi 3D personalizzato" />
+    </div>
+    <div class="product-info">
+      <span class="product-tag">Stampa 3D + Incisione</span>
+      <h3>Portachiavi personalizzato 3D</h3>
+      <p>Corpo compatto stampato in 3D con piastrina incisa al laser: nome, data, logo o testo a scelta. Ideale come gadget aziendale o regalo unico.</p>
+      <div class="product-price">14,90 &euro; <small>a partire da</small></div>
+      <a href="#contatti" class="btn">Acquista ora</a>
+    </div>
+  </div>
+
+</section>
+
+<section id="incisioni">
+
+  <div class="product-section">
+    <div class="product-img-wrap">
+      <img src="https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=700&q=80" alt="Targa legno incisa laser" />
+    </div>
+    <div class="product-info">
+      <span class="product-tag">Incisione Laser</span>
+      <h3>Targa in legno incisa al laser</h3>
+      <p>Legno naturale con incisione laser ultra-dettagliata. Perfetta come insegna per negozio, regalo aziendale o decorazione da parete. Disponibile in vari formati.</p>
+      <div class="product-price">39,90 &euro; <small>a partire da</small></div>
+      <a href="#contatti" class="btn">Personalizza e ordina</a>
+    </div>
+  </div>
+
+  <div class="product-section reverse">
+    <div class="product-img-wrap">
+      <img src="https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?w=700&q=80" alt="Pannello acrilico inciso" />
+    </div>
+    <div class="product-info">
+      <span class="product-tag">Incisione Laser</span>
+      <h3>Pannello acrilico inciso retroilluminato</h3>
+      <p>Pannello in acrilico trasparente con incisione laser di logo, testo o illustrazione. Retroilluminato con LED crea un effetto visivo spettacolare di giorno e di notte.</p>
+      <div class="product-price">64,90 &euro; <small>a partire da</small></div>
+      <a href="#contatti" class="btn">Ordina adesso</a>
+    </div>
+  </div>
+
+</section>
+
+<section class="about" id="chi-siamo">
+  <h2>Chi siamo</h2>
+  <p>Laser3D Studio nasce dalla passione per la stampa 3D, il design e l'incisione laser. Progettiamo e realizziamo a mano ogni pezzo nel nostro laboratorio, seguendo il cliente dalla prima idea al prodotto finito. Non vendiamo oggetti in serie: ogni pezzo e unico, pensato su misura per chi lo riceve.</p>
+</section>
+
+<section class="contact" id="contatti">
+  <h2>Parliamo del tuo progetto</h2>
+  <p>Vuoi un pezzo su misura o personalizzare uno dei nostri prodotti? Scrivici.</p>
+  <form>
+    <input type="text" placeholder="Il tuo nome" required />
+    <input type="email" placeholder="La tua email" required />
+    <textarea placeholder="Descrivi il tuo progetto o il prodotto che vuoi..."></textarea>
+    <button type="submit" class="btn">Invia messaggio</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2026 Laser3D Studio &mdash; Prodotti personalizzati in stampa 3D e incisione laser &mdash; Mandello del Lario, LC</p>
+</footer>
+
+<script>
+  const imgs = document.querySelectorAll('.product-img-wrap img');
+  function onScroll() {
+    imgs.forEach(img => {
+      const r = img.getBoundingClientRect();
+      const winH = window.innerHeight;
+      const center = r.top + r.height / 2;
+      const dist = Math.abs(center - winH / 2);
+      const max = winH / 2 + r.height / 2;
+      const prox = 1 - Math.min(dist / max, 1);
+      const scale = 0.86 + prox * 0.18;
+      img.style.transform = 'scale(' + scale + ')';
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+</body>
+</html>
