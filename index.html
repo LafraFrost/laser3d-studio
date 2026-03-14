@@ -3,142 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laser3D Studio</title>
+  <title>Laser3D Studio | Premium Custom Goods</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
   <style>
+    :root { --accent: #39ff14; --bg-main: #0a0a0a; --bg-alt: #0d1117; --text-muted: #8b949e; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #0a0a0a; color: #f0f0f0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
-    header { position: sticky; top: 0; z-index: 100; background: #0a0a0aee; backdrop-filter: blur(10px); border-bottom: 1px solid #1f1f1f; padding: 18px 60px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-    header h1 { font-size: 2rem; letter-spacing: 0.2em; color: #39ff14; text-transform: uppercase; }
-    nav { display: flex; gap: 36px; }
-    nav a { color: #888; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
-    nav a:hover { color: #39ff14; }
-    .hero { height: 92vh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 22px; text-align: center; padding: 40px; background: radial-gradient(ellipse at center, #0d200d 0%, #0a0a0a 65%); }
-    .hero h2 { font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; }
-    .hero h2 span { color: #39ff14; }
-    .hero p { font-size: 1.1rem; color: #888; max-width: 520px; line-height: 1.6; }
-    .btn { display: inline-block; padding: 14px 38px; background: #39ff14; color: #0a0a0a; font-weight: 700; text-decoration: none; border-radius: 4px; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.85rem; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
-    .btn:hover { background: #2dcc0f; transform: translateY(-2px); }
-    .product-section { display: flex; align-items: center; min-height: 100vh; padding: 80px; gap: 80px; border-top: 1px solid #181818; }
-    .product-section.reverse { flex-direction: row-reverse; background: #0d0d0d; }
-    .product-img-wrap { flex: 1; display: flex; justify-content: center; overflow: visible; border-radius: 16px; padding: 20px; }
-    .product-img-wrap img { width: 100%; max-width: 520px; border-radius: 14px; object-fit: cover; aspect-ratio: 4/3; transform: scale(0.72); will-change: transform; backface-visibility: hidden; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); box-shadow: 0 0 80px rgba(57,255,20,0.06); } .product-img-wrap img.visible { transform: scale(1.1); }
-    .product-info { flex: 1; display: flex; flex-direction: column; gap: 22px; }
-    .product-tag { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: #39ff14; }
-    .product-info h3 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; line-height: 1.2; }
-    .product-info p { font-size: 1rem; color: #999; line-height: 1.75; max-width: 440px; }
-    .product-price { font-size: 1.9rem; font-weight: 800; color: #39ff14; }
-    .product-price small { font-size: 0.85rem; color: #555; font-weight: 400; margin-left: 6px; }
-    .about { padding: 110px 80px; text-align: center; border-top: 1px solid #181818; background: #0d0d0d; }
-    .about h2 { font-size: 2rem; margin-bottom: 20px; color: #39ff14; letter-spacing: 0.1em; }
-    .about p { max-width: 660px; margin: 0 auto; color: #999; line-height: 1.85; font-size: 1.05rem; }
-    .contact { padding: 110px 80px; text-align: center; border-top: 1px solid #181818; }
-    .contact h2 { font-size: 2rem; margin-bottom: 10px; }
-    .contact > p { color: #888; margin-bottom: 44px; }
-    .contact form { display: flex; flex-direction: column; gap: 16px; max-width: 500px; margin: 0 auto; }
-    .contact form input, .contact form textarea { background: #111; border: 1px solid #222; color: #f0f0f0; padding: 14px 18px; border-radius: 6px; font-size: 1rem; outline: none; font-family: inherit; transition: border-color 0.2s; }
-    .contact form input:focus, .contact form textarea:focus { border-color: #39ff14; }
-    .contact form textarea { height: 150px; resize: vertical; }
-    footer { padding: 28px 60px; border-top: 1px solid #181818; text-align: center; color: #333; font-size: 0.8rem; letter-spacing: 0.1em; }
-    @media (max-width: 800px) { .product-section, .product-section.reverse { flex-direction: column; padding: 60px 24px; gap: 40px; } header { padding: 16px 20px; } nav { flex-wrap: wrap; justify-content: center; gap: 14px; } .about, .contact { padding: 60px 24px; } }
+    body { background: var(--bg-main); color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+
+    /* ── HEADER ── */
+    header { position: sticky; top: 0; z-index: 1000; background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid #1f1f1f; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { font-family: 'Bebas Neue', cursive; font-size: 2.2rem; letter-spacing: 2px; color: var(--accent); }
+    nav { display: flex; gap: 40px; }
+    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; transition: 0.3s; }
+    nav a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; text-align: center; background: radial-gradient(circle at center, #122212 0%, #0a0a0a 100%); }
+    .hero-content { z-index: 2; max-width: 900px; padding: 0 40px; }
+    .hero h2 { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem, 10vw, 7rem); line-height: 0.9; margin-bottom: 24px; text-transform: uppercase; }
+    .hero h2 span { color: var(--accent); }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 550px; margin: 0 auto 32px; line-height: 1.6; font-weight: 300; }
+    .hero-bg-text { position: absolute; font-family: 'Bebas Neue', cursive; font-size: 30vw; color: rgba(255,255,255,0.02); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 1; white-space: nowrap; }
+
+    /* ── SECTION GENERIC ── */
+    .product-section { display: flex; align-items: center; min-height: 100vh; padding: 100px 8%; gap: 100px; border-top: 1px solid #161616; position: relative; }
+    .product-section:nth-child(even) { flex-direction: row-reverse; background: var(--bg-alt); }
+    
+    .section-number { position: absolute; top: 40px; left: 8%; font-family: 'Bebas Neue', cursive; font-size: 6rem; color: rgba(255,255,255,0.03); }
+    .product-section:nth-child(even) .section-number { left: auto; right: 8%; }
+
+    .product-img-wrap { flex: 1.2; display: flex; justify-content: center; position: relative; perspective: 1000px; padding: 40px; overflow: visible; }
+    .product-img-wrap img { width: 100%; max-width: 550px; border-radius: 4px; object-fit: cover; aspect-ratio: 4/3; transform: scale(0.75); transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); filter: brightness(0.9); box-shadow: 0 20px 50px rgba(0,0,0,0.5); will-change: transform; }
+    .product-img-wrap img.visible { transform: scale(1.1); filter: brightness(1.1); }
+
+    .product-info { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+    .product-tag { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+    .product-tag::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+
+    .product-info h3 { font-family: 'Bebas Neue', cursive; font-size: 4rem; line-height: 1; letter-spacing: 1px; }
+    .product-info p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
+    
+    .price-wrap { display: flex; align-items: baseline; gap: 12px; margin-top: 10px; }
+    .price-wrap .currency { font-size: 1.2rem; color: var(--text-muted); }
+    .price-wrap .amount { font-size: 3rem; font-weight: 800; color: #fff; }
+    .price-wrap .from { font-size: 0.8rem; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+
+    .btn { display: inline-block; padding: 18px 44px; background: var(--accent); color: #000; font-weight: 800; text-decoration: none; border-radius: 2px; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: none; cursor: pointer; width: fit-content; box-shadow: 0 4px 0px #2db30e; }
+    .btn:hover { background: #4fff30; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(57, 255, 20, 0.3); }
+
+    /* ── ABOUT & CONTACT ── */
+    .about { padding: 150px 8%; text-align: center; background: var(--bg-alt); }
+    .about h2 { font-family: 'Bebas Neue', cursive; font-size: 4rem; margin-bottom: 30px; color: var(--accent); }
+    .about p { max-width: 800px; margin: 0 auto; color: var(--text-muted); line-height: 2; font-size: 1.2rem; font-weight: 300; }
+
+    .contact { padding: 150px 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+    .contact-text h2 { font-family: 'Bebas Neue', cursive; font-size: 4rem; margin-bottom: 20px; }
+    .contact-text p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; }
+    
+    .contact form { display: flex; flex-direction: column; gap: 20px; }
+    .contact form input, .contact form textarea { background: #111; border: 1px solid #222; color: #fff; padding: 20px; border-radius: 4px; font-size: 1rem; outline: none; transition: 0.3s; }
+    .contact form input:focus, .contact form textarea:focus { border-color: var(--accent); background: #161616; }
+    .contact form textarea { height: 180px; resize: none; }
+
+    footer { padding: 60px 8%; border-top: 1px solid #161616; text-align: center; color: #444; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; }
+
+    @media (max-width: 1024px) {
+      .product-section, .product-section:nth-child(even), .contact { flex-direction: column; grid-template-columns: 1fr; padding: 80px 40px; gap: 60px; text-align: center; }
+      .product-info { align-items: center; }
+      .product-tag { justify-content: center; }
+      header { padding: 20px 40px; flex-direction: column; gap: 20px; }
+      nav { gap: 20px; }
+    }
   </style>
 </head>
 <body>
+
+<div class="hero-bg-text">MAKERS</div>
 
 <header>
   <h1>Laser3D Studio</h1>
   <nav>
     <a href="#home">Home</a>
-    <a href="#prodotti3d">Prodotti 3D</a>
-    <a href="#incisioni">Incisioni Laser</a>
-    <a href="#chi-siamo">Chi siamo</a>
-    <a href="#contatti">Contatti</a>
+    <a href="#prodotti3d">3D Prints</a>
+    <a href="#incisioni">Laser Cut</a>
+    <a href="#chi-siamo">About</a>
+    <a href="#contatti">Contact</a>
   </nav>
 </header>
 
 <section class="hero" id="home">
-  <h2>Oggetti unici <span>fatti da zero</span><br>con stampa 3D<br>e incisione laser</h2>
-  <p>Ogni pezzo viene progettato e realizzato nel nostro laboratorio, su misura per te. Niente serie, niente compromessi.</p>
-  <a href="#prodotti3d" class="btn">Scopri i prodotti</a>
+  <div class="hero-content">
+    <h2>Crafting the <span>Future</span><br>One Layer at a time</h2>
+    <p>High-end 3D printing and precision laser engraving. We transform digital dreams into physical reality with artisanal care.</p>
+    <a href="#prodotti3d" class="btn">Explore catalog</a>
+  </div>
 </section>
 
 <section id="prodotti3d">
+  <div class="product-section">
+    <div class="section-number">01</div>
+    <div class="product-img-wrap">
+      <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1000&q=90" alt="3D Gaming Stand" />
+    </div>
+    <div class="product-info">
+      <span class="product-tag">Fused Deposition Modeling</span>
+      <h3>Pro Gaming Headset Stand</h3>
+      <p>The ultimate setup piece. Minimalist geometry met with industrial-grade PLA. Fully customizable with your gamer tag laser-etched into the weighted base.</p>
+      <div class="price-wrap">
+        <span class="currency">€</span>
+        <span class="amount">29</span>
+        <span class="from">/ Start</span>
+      </div>
+      <a href="#contatti" class="btn">Order Custom</a>
+    </div>
+  </div>
 
   <div class="product-section">
+    <div class="section-number">02</div>
     <div class="product-img-wrap">
-      <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=700&q=80" alt="Supporto cuffie gaming 3D" />
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1000&q=90" alt="3D Keychain" />
     </div>
     <div class="product-info">
-      <span class="product-tag">Stampa 3D</span>
-      <h3>Supporto cuffie gaming personalizzato</h3>
-      <p>Stampato in 3D con design minimal, disponibile in vari colori e materiali. Puoi aggiungere il tuo nickname o logo inciso sulla base per un setup davvero unico.</p>
-      <div class="product-price">29,90 &euro; <small>a partire da</small></div>
-      <a href="#contatti" class="btn">Acquista ora</a>
+      <span class="product-tag">Hybrid Manufacturing</span>
+      <h3>Carbon-Core Keychain</h3>
+      <p>Lightweight 3D printed body reinforced with a laser-engraved stainless steel plate. The perfect blend of modern tech and durability for your daily carry.</p>
+      <div class="price-wrap">
+        <span class="currency">€</span>
+        <span class="amount">14</span>
+        <span class="from">/ Start</span>
+      </div>
+      <a href="#contatti" class="btn">Buy Now</a>
     </div>
   </div>
-
-  <div class="product-section reverse">
-    <div class="product-img-wrap">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Portachiavi 3D personalizzato" />
-    </div>
-    <div class="product-info">
-      <span class="product-tag">Stampa 3D + Incisione</span>
-      <h3>Portachiavi personalizzato 3D</h3>
-      <p>Corpo compatto stampato in 3D con piastrina incisa al laser: nome, data, logo o testo a scelta. Ideale come gadget aziendale o regalo unico.</p>
-      <div class="product-price">14,90 &euro; <small>a partire da</small></div>
-      <a href="#contatti" class="btn">Acquista ora</a>
-    </div>
-  </div>
-
 </section>
 
 <section id="incisioni">
-
   <div class="product-section">
+    <div class="section-number">03</div>
     <div class="product-img-wrap">
-      <img src="https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=700&q=80" alt="Targa legno incisa laser" />
+      <img src="https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=1000&q=90" alt="Laser Wood Sign" />
     </div>
     <div class="product-info">
-      <span class="product-tag">Incisione Laser</span>
-      <h3>Targa in legno incisa al laser</h3>
-      <p>Legno naturale con incisione laser ultra-dettagliata. Perfetta come insegna per negozio, regalo aziendale o decorazione da parete. Disponibile in vari formati.</p>
-      <div class="product-price">39,90 &euro; <small>a partire da</small></div>
-      <a href="#contatti" class="btn">Personalizza e ordina</a>
+      <span class="product-tag">C02 Laser Engraving</span>
+      <h3>Artisan Wood Signage</h3>
+      <p>Natural solid wood meets 0.01mm precision. Whether it's a business logo or a home decor piece, we capture every detail with deep, permanent engraving.</p>
+      <div class="price-wrap">
+        <span class="currency">€</span>
+        <span class="amount">39</span>
+        <span class="from">/ Start</span>
+      </div>
+      <a href="#contatti" class="btn">Get Quote</a>
     </div>
   </div>
-
-  <div class="product-section reverse">
-    <div class="product-img-wrap">
-      <img src="https://images.unsplash.com/photo-1609709295948-17d77cb2a69b?w=700&q=80" alt="Pannello acrilico inciso" />
-    </div>
-    <div class="product-info">
-      <span class="product-tag">Incisione Laser</span>
-      <h3>Pannello acrilico inciso retroilluminato</h3>
-      <p>Pannello in acrilico trasparente con incisione laser di logo, testo o illustrazione. Retroilluminato con LED crea un effetto visivo spettacolare di giorno e di notte.</p>
-      <div class="product-price">64,90 &euro; <small>a partire da</small></div>
-      <a href="#contatti" class="btn">Ordina adesso</a>
-    </div>
-  </div>
-
 </section>
 
 <section class="about" id="chi-siamo">
-  <h2>Chi siamo</h2>
-  <p>Laser3D Studio nasce dalla passione per la stampa 3D, il design e l'incisione laser. Progettiamo e realizziamo a mano ogni pezzo nel nostro laboratorio, seguendo il cliente dalla prima idea al prodotto finito. Non vendiamo oggetti in serie: ogni pezzo e unico, pensato su misura per chi lo riceve.</p>
+  <h2>The Workshop</h2>
+  <p>Based in Mandello del Lario, Laser3D Studio is where industrial tech meets Italian craftsmanship. We don't do mass production; we do your production. Every piece is monitored layer by layer and finished by hand.</p>
 </section>
 
 <section class="contact" id="contatti">
-  <h2>Parliamo del tuo progetto</h2>
-  <p>Vuoi un pezzo su misura o personalizzare uno dei nostri prodotti? Scrivici.</p>
+  <div class="contact-text">
+    <h2>Let's build<br>Something.</h2>
+    <p>Have a custom STL file or a logo you want engraved? Send us your project details and we'll get back to you with a quote within 24 hours.</p>
+  </div>
   <form>
-    <input type="text" placeholder="Il tuo nome" required />
-    <input type="email" placeholder="La tua email" required />
-    <textarea placeholder="Descrivi il tuo progetto o il prodotto che vuoi..."></textarea>
-    <button type="submit" class="btn">Invia messaggio</button>
+    <input type="text" placeholder="Full Name" required />
+    <input type="email" placeholder="Email Address" required />
+    <textarea placeholder="Describe your custom project..."></textarea>
+    <button type="submit" class="btn">Send Request</button>
   </form>
 </section>
 
 <footer>
-  <p>&copy; 2026 Laser3D Studio &mdash; Prodotti personalizzati in stampa 3D e incisione laser &mdash; Mandello del Lario, LC</p>
+  <p>&copy; 2026 Laser3D Studio &mdash; Crafted in Lombardia &mdash; 3D Printing & Laser Experts</p>
 </footer>
 
 <script>
@@ -151,8 +192,9 @@
         entry.target.classList.remove('visible');
       }
     });
-  }, { threshold: 0.4 });
-  imgs.forEach(img => observer.observe(img));</script>
+  }, { threshold: 0.35 });
+  imgs.forEach(img => observer.observe(img));
+</script>
 
 </body>
 </html>
