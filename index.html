@@ -1,323 +1,249 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laser3D Studio | Eccellenza Artigianale 3D & Laser</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --accent: #39ff14;
-      --bg-main: #0a0a0a;
-      --bg-alt: #0d1117;
-      --text-muted: #8b949e;
-      --glass: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #0a0a0a;
-      color: #ffffff;
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid #1f1f1f;
-      padding: 10px 5%;
-    }
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5px;
-    }
-    header h1 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
-      color: var(--accent);
-    }
-    nav { display: flex; gap: 20px; }
-    nav a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
-    nav a:hover { color: var(--accent); }
-    .hero-strip {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .hero-strip h2 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-    }
-    .hero-strip p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 300;
-    }
-    .product-section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      min-height: 90vh;
-      padding: 60px 10%;
-      gap: 40px;
-      position: relative;
-      border-bottom: 1px solid #161616;
-    }
-    .product-section:nth-child(even) {
-      flex-direction: row-reverse;
-      background: var(--bg-alt);
-    }
-    .section-number {
-      position: absolute;
-      top: 20px;
-      left: 5%;
-      font-family: 'Bebas Neue', cursive;
-      font-size: 5rem;
-      color: rgba(255, 255, 255, 0.03);
-    }
-    .product-section:nth-child(even) .section-number {
-      left: auto;
-      right: 5%;
-    }
-    .product-img-wrap {
-      flex: 1;
-      min-width: 300px;
-      display: flex;
-      justify-content: center;
-    }
-    .product-img-wrap img {
-      width: 100%;
-      max-width: 500px;
-      border-radius: 4px;
-      object-fit: cover;
-      aspect-ratio: 1/1;
-      transform: scale(0.9);
-      transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-      filter: brightness(0.8);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    }
-    .product-img-wrap img.visible {
-      transform: scale(1.1);
-      filter: brightness(1.1);
-    }
-    .product-info {
-      flex: 1;
-      min-width: 300px;
-      padding: 40px;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column; gap: 20px;
-    }
-    .product-tag {
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .product-info h3 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 3rem;
-      line-height: 1;
-    }
-    .product-info p {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      font-weight: 300;
-    }
-    .price-wrap {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-    .price-wrap .currency { font-size: 1rem; color: var(--text-muted); }
-    .price-wrap .amount { font-size: 2rem; font-weight: 800; color: #fff; }
-    .btn {
-      display: inline-block;
-      padding: 12px 30px;
-      background: var(--accent);
-      color: #000;
-      font-weight: 800;
-      text-decoration: none;
-      border-radius: 4px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      transition: 0.3s;
-      text-align: center;
-    }
-    .btn:hover {
-      background: #fff;
-      transform: translateY(-2px);
-    }
-    #chi-siamo {
-      padding: 80px 10%;
-      text-align: center;
-      background: var(--bg-alt);
-    }
-    #chi-siamo h2 { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 20px; }
-    #chi-siamo p { max-width: 700px; margin: 0 auto; color: var(--text-muted); line-height: 1.8; }
-    #contatti {
-      padding: 80px 10%;
-      background: #000;
-    }
-    .contact-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-    }
-    #contatti h2 { font-family: 'Bebas Neue', cursive; font-size: 4rem; line-height: 0.9; }
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    .contact-form input, .contact-form textarea {
-      padding: 15px;
-      background: #111;
-      border: 1px solid #333;
-      color: #fff;
-      border-radius: 4px;
-      font-family: inherit;
-    }
-    footer {
-      padding: 40px;
-      text-align: center;
-      font-size: 0.7rem;
-      color: #444;
-      border-top: 1px solid #111;
-    }
-    @media (max-width: 768px) {
-      .contact-container { grid-template-columns: 1fr; text-align: center; }
-      .product-section { padding: 40px 5%; }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laser3D Studio | Eccellenza Artigianale 3D & Laser</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #39ff14;
+            --bg-main: #0a0a0a;
+            --bg-alt: #0d1117;
+            --text-muted: #8b949e;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #1f1f1f;
+            padding: 10px 5%;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        header h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+        nav { display: flex; gap: 20px; }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        nav a:hover { color: var(--accent); }
+        .hero-strip {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hero-strip h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Grid Layout */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 100px 10%;
+            align-items: end;
+        }
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .grid-item.middle {
+            transform: scale(1.1);
+        }
+        .img-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin-bottom: 25px;
+        }
+        .img-container img {
+            width: 100%;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            filter: brightness(0.9);
+        }
+        .img-container img.visible {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+        .item-info h4 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        .item-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 250px;
+        }
+
+        #chi-siamo {
+            padding: 80px 10%;
+            text-align: center;
+            background: var(--bg-alt);
+        }
+        #chi-siamo h2 { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 20px; }
+        #chi-siamo p { max-width: 700px; margin: 0 auto; color: var(--text-muted); line-height: 1.8; }
+        #contatti {
+            padding: 80px 10%;
+            background: #000;
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        #contatti h2 { font-family: 'Bebas Neue', cursive; font-size: 4rem; line-height: 0.9; }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 15px;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #444;
+            border-top: 1px solid #111;
+        }
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .grid-item.middle { transform: scale(1); }
+            .contact-container { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="header-top">
-      <h1>LASER3D STUDIO</h1>
-      <nav>
-        <a href="#prodotti">Prodotti</a>
-        <a href="#chi-siamo">Chi Siamo</a>
-        <a href="#contatti">Contatti</a>
-      </nav>
-    </div>
-    <div class="hero-strip">
-      <h2>PLASMIAMO IL <span>FUTURO</span></h2>
-      <p></p>
-    </div>
-  </header>
-  <div id="prodotti">
-    <section class="product-section">
-      <div class="section-number">01</div>
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1000&q=90" alt="Vaso 3D Design">
-      </div>
-      <div class="product-info">
-        <span class="product-tag">Stampa 3D FDM</span>
-        <h3>Vasi Geometrici Premium</h3>
-        <p>Design unico ispirato alla natura e realizzato con bioplastiche eco-sostenibili. Perfetti per ambienti moderni che cercano un dettaglio distintivo.</p>
-        <div class="price-wrap">
-          <span class="currency">€</span>
-          <span class="amount">25</span>
+    <header>
+        <div class="header-top">
+            <h1>LASER3D STUDIO</h1>
+            <nav>
+                <a href="#prodotti">Prodotti</a>
+                <a href="#chi-siamo">Chi Siamo</a>
+                <a href="#contatti">Contatti</a>
+            </nav>
         </div>
-        <a href="#contatti" class="btn">Ordina Ora</a>
-      </div>
-    </section>
-    <section class="product-section">
-      <div class="section-number">02</div>
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000&q=90" alt="Incisione Laser Legno">
-      </div>
-      <div class="product-info">
-        <span class="product-tag">Incisione Laser CO2</span>
-        <h3>Insegne Artigianali</h3>
-        <p>Il calore del legno naturale incontra la precisione del laser. Realizziamo loghi aziendali e decorazioni personalizzate con dettagli microscopici.</p>
-        <div class="price-wrap">
-          <span class="currency">da €</span>
-          <span class="amount">45</span>
+        <div class="hero-strip">
+            <h2>PLASMIAMO IL <span>FUTURO</span></h2>
         </div>
-        <a href="#contatti" class="btn">Richiedi Preventivo</a>
-      </div>
-    </section>
-    <section class="product-section">
-      <div class="section-number">03</div>
-      <div class="product-img-wrap">
-        <img src="https://images.unsplash.com/photo-1631125999923-f2227d8254c1?w=1000&q=90" alt="Tech Accessories">
-      </div>
-      <div class="product-info">
-        <span class="product-tag">Custom Tech</span>
-        <h3>Supporto Cuffie Pro</h3>
-        <p>Struttura modulare rinforzata, progettata per la massima stabilità. Personalizzabile con il tuo nickname o logo inciso sulla base.</p>
-        <div class="price-wrap">
-          <span class="currency">€</span>
-          <span class="amount">19</span>
+    </header>
+
+    <div id="prodotti" class="product-grid">
+        <div class="grid-item">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=90" alt="Vaso 3D">
+            </div>
+            <div class="item-info">
+                <h4>Geometric Art</h4>
+                <p>Sculture stampate in 3D con precisione micrometrica.</p>
+            </div>
         </div>
-        <a href="#contatti" class="btn">Personalizza</a>
-      </div>
-    </section>
-  </div>
-  <section id="chi-siamo">
-    <h2>Il Nostro Laboratorio</h2>
-    <p>
-      Laser3D Studio nasce dalla passione per la fabbricazione digitale. Uniamo tecnologie industriali avanzate con la cura tipica del "fatto a mano" italiano. Ogni oggetto è prodotto on-demand per garantire zero sprechi e massima qualità.
-    </p>
-  </section>
-  <section id="contatti">
-    <div class="contact-container">
-      <div>
-        <h2>Iniziamo un Progetto.</h2>
-        <p style="color: var(--text-muted); margin-top: 20px;">Hai un'idea o un file da stampare? Inviaci i dettagli e ti risponderemo con un preventivo gratuito.</p>
-      </div>
-      <form class="contact-form">
-        <input type="text" placeholder="Nome" required>
-        <input type="email" placeholder="Email" required>
-        <textarea rows="5" placeholder="Descrivi il tuo progetto..."></textarea>
-        <button type="submit" class="btn">Invia Messaggio</button>
-      </form>
+        <div class="grid-item middle">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=90" alt="Tech">
+            </div>
+            <div class="item-info">
+                <h4>Tech Precision</h4>
+                <p>Soluzioni custom per il tuo setup gaming professionale.</p>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1631125999923-f2227d8254c1?w=800&q=90" alt="Laser">
+            </div>
+            <div class="item-info">
+                <h4>Laser Craft</h4>
+                <p>Incisioni su materiali naturali per dettagli unici.</p>
+            </div>
+        </div>
     </div>
-  </section>
-  <footer>
-    <p>&copy; 2026 Laser3D Studio — Made in Italy () — 3D Printing & Laser Engraving</p>
-  </footer>
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.product-img-wrap img').forEach(img => {
-      observer.observe(img);
-    });
-  </script>
+
+    <section id="chi-siamo">
+        <h2>Il Nostro Laboratorio</h2>
+        <p>Laser3D Studio nasce dalla passione per la fabbricazione digitale. Uniamo tecnologie industriali avanzate con la cura tipica del "fatto a mano" italiano.</p>
+    </section>
+
+    <section id="contatti">
+        <div class="contact-container">
+            <div>
+                <h2>Iniziamo un Progetto.</h2>
+                <p style="color: var(--text-muted); margin-top: 20px;">Inviaci i dettagli e ti risponderemo con un preventivo gratuito.</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Nome" required>
+                <input type="email" placeholder="Email" required>
+                <textarea rows="5" placeholder="Descrivi il tuo progetto..."></textarea>
+                <button type="submit" class="btn" style="border:none; cursor:pointer;">Invia Messaggio</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Laser3D Studio — Made in Italy — 3D Printing & Laser Engraving
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.img-container img').forEach(img => {
+            observer.observe(img);
+        });
+    </script>
 </body>
 </html>
