@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #39ff14; /* Neon Green */
+            --accent: #39ff14;
             --accent-glow: rgba(57, 255, 20, 0.3);
             --bg-main: #0a0a0a;
             --bg-alt: #111117;
@@ -17,7 +17,7 @@
             --text-muted: #8b8b9e;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,7 +47,8 @@
             background: rgba(10, 10, 10, 0.7);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-            padding: 20px 5%;
+            padding: 15px 5%;
+            transition: var(--transition);
         }
 
         .header-content {
@@ -60,17 +61,17 @@
 
         header h1 {
             font-family: 'Bebas Neue', cursive;
-            font-size: 2.2rem;
+            font-size: 2rem;
             letter-spacing: 2px;
             color: var(--accent);
             text-shadow: 0 0 20px var(--accent-glow);
         }
 
-        nav { display: flex; gap: 40px; }
+        nav { display: flex; gap: 30px; }
         nav a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -86,186 +87,200 @@
             align-items: center;
             text-align: center;
             padding: 0 10%;
-            background: radial-gradient(circle at center, rgba(57, 255, 20, 0.02) 0%, transparent 70%);
         }
 
         .hero h2 {
             font-family: 'Bebas Neue', cursive;
-            font-size: 6rem;
-            line-height: 1;
+            font-size: clamp(4rem, 10vw, 8rem);
+            line-height: 0.9;
             margin-bottom: 20px;
-            background: linear-gradient(to bottom, #fff 40%, #666);
+            background: linear-gradient(to bottom, #fff 50%, #444);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
-            max-width: 700px;
+            max-width: 600px;
             margin-bottom: 40px;
         }
 
         .btn {
-            padding: 16px 40px;
+            padding: 18px 45px;
             background: var(--accent);
             color: #000;
             text-decoration: none;
             font-weight: 800;
-            border-radius: 4px;
+            border-radius: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            font-size: 0.9rem;
         }
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px var(--accent-glow);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px var(--accent-glow);
         }
 
-        section { padding: 100px 5%; max-width: 1400px; margin: 0 auto; }
+        section { padding: 120px 5%; max-width: 1400px; margin: 0 auto; }
         
         .section-title {
             font-family: 'Bebas Neue', cursive;
-            font-size: 3rem;
-            margin-bottom: 60px;
+            font-size: 3.5rem;
+            margin-bottom: 80px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
         }
         .section-title::after {
             content: '';
-            height: 2px;
+            height: 1px;
             flex-grow: 1;
-            background: linear-gradient(to right, var(--accent), transparent);
+            background: linear-gradient(to right, var(--glass-border), transparent);
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
 
         .grid-item {
             position: relative;
             background: var(--bg-alt);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             transition: var(--transition);
         }
         .grid-item:hover {
             border-color: var(--accent);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transform: translateY(-15px);
         }
 
         .img-wrap {
-            height: 350px;
-            background: #1a1a1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            height: 400px;
+            overflow: hidden;
         }
-        .img-wrap::before {
-            content: 'PREVIEW';
-            font-family: 'Bebas Neue';
-            color: rgba(255,255,255,0.05);
-            font-size: 4rem;
+        .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s ease;
+            filter: grayscale(0.5);
+        }
+        .grid-item:hover .img-wrap img {
+            transform: scale(1.1);
+            filter: grayscale(0);
         }
 
         .item-overlay {
-            padding: 30px;
-            background: linear-gradient(to top, var(--bg-alt) 20%, transparent);
+            padding: 35px;
+            background: linear-gradient(to top, var(--bg-alt) 30%, transparent);
+            position: absolute;
+            bottom: 0; width: 100%;
         }
 
         .item-overlay span {
             color: var(--accent);
-            font-weight: 700;
-            font-size: 0.8rem;
+            font-weight: 800;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .item-overlay h3 {
             font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            margin-top: 5px;
+            font-size: 2.2rem;
+            margin-top: 8px;
         }
 
         .services {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         .service-card {
-            padding: 40px;
+            padding: 50px;
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            border-radius: 20px;
             transition: var(--transition);
         }
-        .service-card:hover { border-color: var(--accent); }
+        .service-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--accent);
+        }
         .service-card h4 {
             color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            font-weight: 800;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 1px;
         }
 
         #contatti {
-            background: var(--bg-alt);
-            border-radius: 24px;
-            margin-top: 100px;
-            margin-bottom: 100px;
-            padding: 80px;
+            background: linear-gradient(145deg, #111, #0a0a0a);
+            border-radius: 32px;
+            margin: 100px auto;
+            padding: 100px 8%;
             border: 1px solid var(--glass-border);
         }
 
         .contact-form {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 25px;
         }
         .contact-form textarea { grid-column: span 2; }
         .contact-form input, .contact-form textarea {
-            background: rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.02);
             border: 1px solid var(--glass-border);
-            padding: 18px;
+            padding: 22px;
             color: #fff;
-            border-radius: 8px;
+            border-radius: 12px;
             font-family: inherit;
             outline: none;
             transition: var(--transition);
         }
         .contact-form input:focus, .contact-form textarea:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
+            background: rgba(255,255,255,0.05);
         }
 
         footer {
-            padding: 60px 5%;
+            padding: 80px 5%;
             text-align: center;
             border-top: 1px solid var(--glass-border);
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (max-width: 900px) {
-            .hero h2 { font-size: 4rem; }
-            .services, .contact-form { grid-template-columns: 1fr; }
+            .contact-form { grid-template-columns: 1fr; }
             .contact-form textarea { grid-column: span 1; }
+            .section-title { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
     <div class="mesh-bg"></div>
 
-    <header>
+    <header id="header">
         <div class="header-content">
             <h1>LASER3D STUDIO</h1>
             <nav>
@@ -277,55 +292,65 @@
     </header>
 
     <section class="hero">
-        <h2>ARTIGIANATO<br>DIGITALE</h2>
-        <p>Dalla stampa 3D FDM avanzata all'incisione laser millimetrica. Trasformiamo le tue idee in oggetti tangibili di puro design.</p>
-        <a href="#contatti" class="btn">Inizia un Progetto</a>
+        <h2 class="reveal">PRECISIONE<br>ARTIGIANA</h2>
+        <p class="reveal">Dalla stampa 3D FDM avanzata all'incisione laser millimetrica. Trasformiamo le tue idee in oggetti tangibili di puro design.</p>
+        <div class="reveal">
+            <a href="#contatti" class="btn">Inizia un Progetto</a>
+        </div>
     </section>
 
     <section id="servizi">
-        <h2 class="section-title">I NOSTRI SERVIZI</h2>
+        <h2 class="section-title reveal">I NOSTRI SERVIZI</h2>
         <div class="services">
-            <div class="service-card">
+            <div class="service-card reveal">
                 <h4>Stampa 3D FDM</h4>
-                <p>Prototipazione rapida e produzione di pezzi funzionali in materiali tecnici ad alte prestazioni.</p>
+                <p>Prototipazione rapida e produzione di pezzi funzionali in materiali tecnici ad alte prestazioni come Carbon Fiber e Nylon.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal">
                 <h4>Incisione Laser</h4>
-                <p>Personalizzazione estrema su legno, acrilico, metallo e pelle con precisione chirurgica.</p>
+                <p>Personalizzazione estrema su legno, acrilico, metallo e pelle con una precisione millimetrica per regali unici.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal">
                 <h4>Modellazione 3D</h4>
-                <p>Servizio di design CAD per dare forma ai tuoi concetti partendo da un semplice schizzo.</p>
+                <p>Servizio di design CAD professionale per dare vita ai tuoi concetti, ottimizzati per la produzione additiva.</p>
             </div>
         </div>
     </section>
 
     <section id="creazioni">
-        <h2 class="section-title">ULTIME CREAZIONI</h2>
+        <h2 class="section-title reveal">ULTIME CREAZIONI</h2>
         <div class="product-grid">
-            <div class="grid-item">
-                <div class="img-wrap"></div>
+            <div class="grid-item reveal">
+                <div class="img-wrap">
+                    <img src="https://images.unsplash.com/photo-1631016800696-5ea8801b3c2a?q=80&w=800&auto=format&fit=crop" alt="3D Printing Preview">
+                </div>
                 <div class="item-overlay">
                     <span>Progetto Custom</span>
                     <h3>Lampade Litofania</h3>
                 </div>
             </div>
-            <div class="grid-item">
-                <div class="img-wrap"></div>
+            <div class="grid-item reveal">
+                <div class="img-wrap">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" alt="Laser Engraving Preview">
+                </div>
                 <div class="item-overlay">
                     <span>Artigianato Laser</span>
                     <h3>Shadow Box Narrative</h3>
                 </div>
             </div>
-            <div class="grid-item">
-                <div class="img-wrap"></div>
+            <div class="grid-item reveal">
+                <div class="img-wrap">
+                    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?q=80&w=800&auto=format&fit=crop" alt="Mechanical Part">
+                </div>
                 <div class="item-overlay">
-                    <span>Laser Engraving</span>
+                    <span>Precisione Meccanica</span>
                     <h3>Ricordi Indelebili</h3>
                 </div>
             </div>
-            <div class="grid-item">
-                <div class="img-wrap"></div>
+            <div class="grid-item reveal">
+                <div class="img-wrap">
+                    <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=800&auto=format&fit=crop" alt="3D Design">
+                </div>
                 <div class="item-overlay">
                     <span>Design Organico</span>
                     <h3>Complementi d'Arredo</h3>
@@ -334,7 +359,7 @@
         </div>
     </section>
 
-    <section id="contatti">
+    <section id="contatti" class="reveal">
         <h2 class="section-title">HAI UN'IDEA?</h2>
         <form class="contact-form">
             <input type="text" placeholder="Il tuo Nome" required>
@@ -345,7 +370,28 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 Laser3D Studio — Mandello del Lario (LC) — Excellence in Additive Manufacturing</p>
+        <p>&copy; 2024 Laser3D Studio — Mandello del Lario (LC) — Excellence in Additive Manufacturing & Laser Tech</p>
     </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '10px 5%';
+                header.style.background = 'rgba(10, 10, 10, 0.9)';
+            } else {
+                header.style.padding = '15px 5%';
+                header.style.background = 'rgba(10, 10, 10, 0.7)';
+            }
+        });
+    </script>
 </body>
 </html>
