@@ -1,284 +1,266 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Laser3D Studio | Eccellenza Artigianale 3D & Laser</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent: #39ff14;
-            --bg-main: #0a0a0a;
-            --bg-alt: #0d1117;
-            --text-muted: #8b949e;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laser3D Studio | Eccellenza Artigianale 3D & Laser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #39ff14;
+      --bg-main: #0a0a0a;
+      --bg-alt: #0d1117;
+      --text-muted: #8b949e;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg-main);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 15px 5%;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header h1 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: var(--accent);
+    }
+    nav { display: flex; gap: 30px; }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s;
+    }
+    nav a:hover { color: var(--accent); }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background: var(--bg-main);
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            line-height: 1.6;
-        }
+    .hero {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 10%;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+    }
+    .hero h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(3rem, 10vw, 6rem);
+      line-height: 0.9;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      color: var(--text-muted);
+      max-width: 600px;
+      font-size: 1.1rem;
+    }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-main); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 50px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .grid-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #111;
+      border: 1px solid #222;
+      transition: var(--transition);
+    }
+    .grid-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .img-wrap {
+      width: 100%;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+    }
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 1s ease;
+      filter: brightness(0.7);
+    }
+    .grid-item:hover .img-wrap img {
+      transform: scale(1.1);
+      filter: brightness(1);
+    }
+    .item-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    }
+    .item-overlay span {
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .item-overlay h3 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.5rem;
+      margin: 5px 0;
+    }
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 15px 5%;
-        }
+    #contatti {
+      padding: 100px 10%;
+      background: var(--bg-alt);
+      text-align: center;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 40px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 20px;
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 10px;
+      font-family: inherit;
+    }
+    .btn {
+      padding: 15px 40px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #fff; transform: scale(1.05); }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    footer {
+      padding: 40px;
+      text-align: center;
+      color: #444;
+      font-size: 0.8rem;
+    }
 
-        header h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            letter-spacing: 2px;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        nav { display: flex; gap: 30px; }
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: var(--transition);
-        }
-        nav a:hover { color: var(--accent); transform: translateY(-2px); }
-
-        .hero {
-            padding: 120px 5% 80px;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .hero h2 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: clamp(3.5rem, 10vw, 7rem);
-            line-height: 0.9;
-            margin-bottom: 20px;
-            background: linear-gradient(to bottom, #fff, #555);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            background: #fff;
-            color: #000;
-            text-decoration: none;
-            font-weight: 800;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
-        .btn:hover {
-            background: var(--accent);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
-        }
-
-        .section-title {
-            padding: 0 8%;
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-            padding: 0 8% 100px;
-        }
-
-        .grid-item {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        .grid-item:hover {
-            transform: translateY(-10px);
-            border-color: rgba(57, 255, 20, 0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .img-container {
-            width: 100%;
-            height: 350px;
-            background: #151515;
-            overflow: hidden;
-        }
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-        .grid-item:hover .img-container img { opacity: 1; transform: scale(1.05); }
-
-        .item-info { padding: 30px; }
-        .item-info span {
-            color: var(--accent);
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .item-info h4 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.8rem;
-            margin: 10px 0;
-        }
-        .item-info p { color: var(--text-muted); font-size: 0.95rem; }
-
-        .lab-section {
-            background: var(--bg-alt);
-            padding: 100px 8%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .lab-text h3 { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 20px; }
-        .lab-tech-list { list-style: none; }
-        .lab-tech-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-        }
-        .lab-tech-list li strong { color: var(--accent); }
-
-        footer {
-            padding: 80px 8% 40px;
-            border-top: 1px solid var(--glass-border);
-            text-align: center;
-        }
-        .footer-logo { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
-        .contact-links { margin: 30px 0; }
-        .contact-links a { color: #fff; margin: 0 20px; text-decoration: none; font-weight: 700; transition: 0.3s; }
-        .contact-links a:hover { color: var(--accent); }
-        .copy { color: var(--text-muted); font-size: 0.8rem; margin-top: 40px; }
-
-        @media (max-width: 900px) {
-            .product-grid { grid-template-columns: 1fr; }
-            .lab-section { grid-template-columns: 1fr; }
-            .hero h2 { font-size: 4rem; }
-        }
-    </style>
+    @media (max-width: 800px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 4rem; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>Laser3D Studio</h1>
-            <nav>
-                <a href="#prodotti">Creazioni</a>
-                <a href="#laboratorio">Laboratorio</a>
-                <a href="#contatti">Contatti</a>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="header-content">
+      <h1>LASER3D STUDIO</h1>
+      <nav>
+        <a href="#creazioni">Creazioni</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <section class="hero">
-            <h2>Artigianato Digitale di Precisione</h2>
-            <p>Dalla stampa 3D FDM avanzata all'incisione laser millimetrica. Trasformiamo le tue idee in oggetti tangibili ad alto impatto estetico.</p>
-            <a href="#prodotti" class="btn">Esplora Creazioni</a>
-        </section>
+  <section class="hero">
+    <h2>ARTIGIANATO DIGITALE DI PRECISIONE</h2>
+    <p>Dalla stampa 3D FDM avanzata all'incisione laser millimetrica. Trasformiamo le tue idee in oggetti tangibili ad alto impatto estetico.</p>
+  </section>
 
-        <h3 id="prodotti" class="section-title">I Nostri Servizi</h3>
-        <div class="product-grid">
-            <div class="grid-item">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1517420704173-1002364c7816?w=800&q=90" alt="Litofania Custom">
-                </div>
-                <div class="item-info">
-                    <span>Stampa 3D Custom</span>
-                    <h4>Litofanie Emozionali</h4>
-                    <p>Le tue foto trasformate in sculture di luce. Un effetto magico che rivela i tuoi ricordi solo quando la lampada è accesa.</p>
-                </div>
-            </div>
+  <div id="creazioni" class="product-grid">
+    <!-- Litofania -->
+    <div class="grid-item">
+      <div class="img-wrap">
+        <img src="litofania.jpg" alt="Litofania Personalizzata">
+      </div>
+      <div class="item-overlay">
+        <span>Stampa 3D Custom</span>
+        <h3>Lampade Litofania</h3>
+      </div>
+    </div>
 
-            <div class="grid-item">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1614030424754-24d9e9652079?w=800&q=90" alt="Shadow Box">
-                </div>
-                <div class="item-info">
-                    <span>Artigianato Laser</span>
-                    <h4>Shadow Box Narrative</h4>
-                    <p>Mondi incantati e personaggi iconici racchiusi in cornici multilivello. Ogni strato è inciso al laser per creare una profondità fiabesca.</p>
-                </div>
-            </div>
-        </div>
+    <!-- Shadow Box -->
+    <div class="grid-item">
+      <div class="img-wrap">
+        <img src="shadowbox.jpg" alt="Shadow Box Artistica">
+      </div>
+      <div class="item-overlay">
+        <span>Artigianato Laser</span>
+        <h3>Shadow Box Narrative</h3>
+      </div>
+    </div>
 
-        <section id="laboratorio" class="lab-section">
-            <div class="lab-text">
-                <h3>Il Laboratorio</h3>
-                <p>Utilizziamo tecnologie di ultima generazione per garantire la massima qualità su ogni pezzo. Precisione, velocità e cura dei dettagli.</p>
-                <ul class="lab-tech-list">
-                    <li><span>Stampante 3D</span> <strong>Creality K1 Max</strong></li>
-                    <li><span>Tecnologia Laser</span> <strong>Diodo 20W High Precision</strong></li>
-                    <li><span>Materiali 3D</span> <strong>PLA, PETG, TPU</strong></li>
-                    <li><span>Incisione su</span> <strong>Legno, Acrilico, Cuoio</strong></li>
-                </ul>
-            </div>
-            <div class="img-container" style="border-radius: 12px; height: 400px;">
-                <img src="https://images.unsplash.com/photo-1631281956016-3cdc1b2fe5fb?w=800&q=90" alt="3D Printing Lab">
-            </div>
-        </section>
-    </main>
+    <!-- Incisione Nozze -->
+    <div class="grid-item">
+      <div class="img-wrap">
+        <img src="nozze.jpg" alt="Incisione Matrimonio">
+      </div>
+      <div class="item-overlay">
+        <span>Laser Engraving</span>
+        <h3>Ricordi Indelebili</h3>
+      </div>
+    </div>
 
-    <footer id="contatti">
-        <div class="footer-logo">Laser3D Studio</div>
-        <p>Pronto a realizzare il tuo progetto? Contattaci ora.</p>
-        <div class="contact-links">
-            <a href="#">WhatsApp</a>
-            <a href="mailto:info@laser3dstudio.it">Email</a>
-            <a href="#">Instagram</a>
-        </div>
-        <div class="copy">© 2024 Laser3D Studio - Mandello del Lario. Made with Tech.</div>
-    </footer>
+    <!-- Lampada Gufo -->
+    <div class="grid-item">
+      <div class="img-wrap">
+        <img src="gufo.jpg" alt="Lampada Design 3D">
+      </div>
+      <div class="item-overlay">
+        <span>Modellazione 3D</span>
+        <h3>Design Organico</h3>
+      </div>
+    </div>
+  </div>
+
+  <section id="contatti">
+    <h2>Hai un Progetto?</h2>
+    <p>Inviaci i tuoi file o descrivi la tua idea. Ti risponderemo con un preventivo gratuito.</p>
+    <form class="contact-form">
+      <input type="text" placeholder="Il tuo Nome" required>
+      <input type="email" placeholder="Email" required>
+      <textarea rows="5" placeholder="Descrivi il tuo progetto personalizzato..."></textarea>
+      <button type="submit" class="btn">Invia Richiesta</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Laser3D Studio — Mandello del Lario (LC) — Italy</p>
+  </footer>
 </body>
 </html>
